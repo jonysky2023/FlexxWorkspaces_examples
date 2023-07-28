@@ -5,25 +5,43 @@
 ## Filtrado doble para la obtención de un jobsdetail
 script_filtrodoble_jobsdetail_python.py</div>
 
-    Importa las librerías necesarias: requests para realizar solicitudes HTTP a la API, 
-    csv para trabajar con archivos CSV y time para introducir una pausa en el script.​
+Importaciones:
 
-    Establece variables: Define la URL base de la API (api_url), el token de autorización necesario para las solicitudes (token),
-    y las cabeceras para las solicitudes HTTP (headers).​
+    import requests
+    import csv
+    import time
 
-    Solicita información al usuario: Pide al usuario que ingrese el nombre del usuario que realizó una operación personalizada (Owner)
-    y la fecha de lanzamiento de esa operación (Fechaactual).​
+Encabezados de solicitud HTTP:
 
-    Obtiene la lista de JobIDs: Realiza una solicitud HTTP a la API para obtener una lista de IDs de trabajos (JobIDs)
-    asociados al usuario ingresado, ordenados por fecha de creación descendente.​
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': token
+    }
+    
+Entrada de usuario:
 
-    Obtiene los detalles de cada trabajo: Por cada ID de trabajo obtenido, realiza otra solicitud HTTP para
-    obtener los detalles de ese trabajo.
-    Los detalles se filtran por la fecha ingresada, el tipo de registro "info" y el método específico.​
+    Owner = input("Ingrese el usuario que realiza la custom operation: ")
+    Fechaactual = input("Ingrese la fecha del lanzamiento de la custom operation (con formato DIA/MES/AÑO): ")
 
-    Almacena los resultados en un archivo CSV: Si se encuentran detalles para algún trabajo, los resultados 
-    se guardan en un archivo CSV llamado "resultados.csv".
-    El campo "LogType" se excluye antes de escribirlo en el archivo.​
+Obtención de JobIDs:
 
-    Pausa de 8 segundos: Después de completar las operaciones, 
-    el código se detiene durante 8 segundos antes de finalizar la ejecución.
+    job_ids = []
+    url_jobs = api_url + f'jobs?filter=startswith(Owner,"{Owner}")&orderby=CreationDate desc&apiversion=1'
+    
+Obtención de detalles de cada trabajo:
+
+    resultados = []
+    for job_id in job_ids:
+    url_job_detail = api_url + f'jobdetail?filter=startswith(Detail,"{Fechaactual}") and (LogType eq "{Logtype}") and (Method eq "VDIWorkerClientService:UpdateRemoteOperationStatus")&apiversion=1&jobid={job_id}'
+
+Guardar los resultados en un archivo CSV:
+
+      if resultados:
+      filename = 'resultados.csv'
+      print(f"Los resultados se han guardado en el archivo {filename}")
+    else:
+      print("No se encontraron resultados para exportar a un archivo CSV.")
+
+Pausa de 8 segundos:
+
+    time.sleep(8)

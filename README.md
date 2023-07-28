@@ -1,5 +1,5 @@
-# FlexxWorkspaces_examples
-Filtrado doble para obtención de un jobsdetail - script_filtrodoble_jobsdetail_python.py
+# FlexxWorkspaces_examples #
+## Filtrado doble para obtención de un jobsdetail - script_filtrodoble_jobsdetail_python.py ##
 
     Importa las librerías necesarias: requests para realizar solicitudes HTTP a la API, 
     csv para trabajar con archivos CSV y time para introducir una pausa en el script.​

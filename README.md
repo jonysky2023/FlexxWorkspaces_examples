@@ -1,5 +1,8 @@
-# FlexxWorkspaces_examples
-## Filtrado doble para obtención de un jobsdetail
+<h1 align="center">
+FlexxWorkspaces_examples <br />
+</h1>
+
+## Filtrado doble para la obtención de un jobsdetail
 script_filtrodoble_jobsdetail_python.py
 
     Importa las librerías necesarias: requests para realizar solicitudes HTTP a la API, 

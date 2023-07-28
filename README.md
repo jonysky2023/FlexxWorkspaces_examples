@@ -5,6 +5,11 @@
 ## Filtrado doble para la obtención de varios jobdetails de un usuario
 script_filtrodoble_jobsdetail_python.py</div>
 
+Caso de uso:
+Necesitamos conocer las versiones (compilaciones) de windows existentes en nuestro entorno 
+
+Explicación del código:
+
 Importaciones:
 
     import requests

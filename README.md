@@ -2,7 +2,7 @@
   </a>
   <h1><a href="https://github.com/jonysky2023/FlexxWorkspaces_examples/">FlexxWorkspaces Codes</a> - Python</h1>
 
-## Filtrado doble para la obtención de un jobsdetail
+## Filtrado doble para la obtención de varios jobdetails de un usuario
 script_filtrodoble_jobsdetail_python.py</div>
 
 Importaciones:

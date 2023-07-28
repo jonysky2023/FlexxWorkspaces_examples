@@ -1,9 +1,9 @@
-<h1 align="center">
-FlexxWorkspaces_examples <br />
-</h1>
+<div align="center">
+  </a>
+  <h1><a href="https://github.com/jonysky2023/FlexxWorkspaces_examples/">FlexxWorkspaces Codes</a> - Python</h1>
 
 ## Filtrado doble para la obtención de un jobsdetail
-script_filtrodoble_jobsdetail_python.py
+script_filtrodoble_jobsdetail_python.py</div>
 
     Importa las librerías necesarias: requests para realizar solicitudes HTTP a la API, 
     csv para trabajar con archivos CSV y time para introducir una pausa en el script.​

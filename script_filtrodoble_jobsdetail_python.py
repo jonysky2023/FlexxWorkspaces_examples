@@ -1,7 +1,9 @@
+# Importa las librerías necesarias:
 import requests
 import csv
 import time
 
+# Establece variables: Define la URL base de la API (api_url),  el token de autorización y las cabeceras para las solicitudes HTTP (headers).
 api_url = 'https://fws-apim-93768.azure-api.net/api/'
 token = 'Basic <TOKEN>'
 headers = {
@@ -9,6 +11,7 @@ headers = {
     'Authorization': token
 }
 
+# Solicita información al usuario
 Owner = input("Ingrese el usuario que realiza la custom operation: ")
 Fechaactual = input("Ingrese la fecha del lanzamiento de la custom operation (con formato DIA/MES/AÑO): ")
 Logtype = "info"

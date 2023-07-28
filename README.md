@@ -1,6 +1,6 @@
 <div align="center">
   </a>
-  <h1><a href="https://github.com/jonysky2023/FlexxWorkspaces_examples/">FlexxWorkspaces Codes</a> - Python</h1>
+  <h1><a href="https://github.com/jonysky2023/FlexxWorkspaces_examples/">FlexxWorkspaces Codes</a> - API with Python</h1>
 
 ## Filtrado doble para la obtención de varios jobdetails de un usuario
 script_filtrodoble_jobsdetail_python.py</div>

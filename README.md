@@ -52,6 +52,7 @@ Pausa de 8 segundos:
     time.sleep(8)
 
 <div align="center">
+   </a>
 ## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
 LastBootDuration_superior_a_XX.py</div>
 

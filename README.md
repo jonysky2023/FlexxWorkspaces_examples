@@ -51,10 +51,43 @@ Pausa de 8 segundos:
 
     time.sleep(8)
 
-## Mostrar en consola los dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
 LastBootDuration_superior_a_XX.py</div>
 
 Caso de uso:
-Mostrar en consola los dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+Necesitamos conocer y visualizar en la consola de Python los dispositivos que han tenido un Boot Logon superior a los 100 segundos
 
 Explicación del código:
+
+Importaciones:
+
+    import requests
+    import pprint
+
+Definir la URL y las cabeceras:
+
+    api_url = 'https://fws-apim-93768.azure-api.net/api/'  # URL de la FWSAPI
+    token = 'BASIC TOKEN'
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': token
+    }
+
+Realizar la solicitud HTTP:
+
+    url = api_url + f'workspaces?apiVersion=1'  
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    result = response.json()
+    workspaces = result['Items']
+
+Filtrar workspaces:
+
+    filtered_workspaces = [workspace for workspace in workspaces if workspace.get('LastBootDuration') and int(workspace['LastBootDuration']) > 100]
+
+Resultados:
+
+    pprint.pprint(filtered_workspaces)
+
+    

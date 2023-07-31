@@ -6,7 +6,7 @@
 script_filtrodoble_jobsdetail_python.py</div>
 
 Caso de uso:
-Necesitamos conocer las versiones (compilaciones) de windows existentes en nuestro entorno 
+Necesitamos extraer un listado con los números de versiones de las BIOS de los dispositivos físicos:​
 
 Explicación del código:
 
@@ -15,42 +15,82 @@ Importaciones:
     import requests
     import csv
     import time
+    import pprint
 
 Encabezados de solicitud HTTP:
+
+    api_url = 'https://fws-apim-93768.azure-api.net/api/'  # URL de la FWSAPI
+    token = 'BASIC TOKEN'
 
     headers = {
         'Content-Type': 'application/json',
         'Authorization': token
     }
     
-Entrada de usuario:
+Solicitar información al usuario:
 
     Owner = input("Ingrese el usuario que realiza la custom operation: ")
     Fechaactual = input("Ingrese la fecha del lanzamiento de la custom operation (con formato DIA/MES/AÑO): ")
+    Logtype = "info"
 
 Obtención de JobIDs:
 
     job_ids = []
     url_jobs = api_url + f'jobs?filter=startswith(Owner,"{Owner}")&orderby=CreationDate desc&apiversion=1'
     
-Obtención de detalles de cada trabajo:
+Obtener JobIDs mediante una solicitud HTTP:
+
+    job_ids = []
+    url_jobs = api_url + f'jobs?filter=startswith(Owner,"{Owner}")&orderby=CreationDate desc&apiversion=1'
+
+    try:
+        response = requests.get(url_jobs, headers=headers)
+        response.raise_for_status()
+        jobs_result = response.json()
+        job_ids = [job['JobId'] for job in jobs_result['Items']]
+    except requests.exceptions.RequestException as e:
+        raise Exception(str(e))
+
+Obtener detalles de cada trabajo mediante otra solicitud HTTP:
 
     resultados = []
+
     for job_id in job_ids:
-    url_job_detail = api_url + f'jobdetail?filter=startswith(Detail,"{Fechaactual}") and (LogType eq "{Logtype}") and (Method eq "VDIWorkerClientService:UpdateRemoteOperationStatus")&apiversion=1&jobid={job_id}'
+        url_job_detail = api_url + f'jobdetail?filter=startswith(Detail,"{Fechaactual}") and (LogType eq "{Logtype}") and (Method eq     "VDIWorkerClientService:UpdateRemoteOperationStatus")&apiversion=1&jobid={job_id}'
+        try:
+            response = requests.get(url_job_detail, headers=headers)
+            response.raise_for_status()
+            job_detail_result = response.json()
+
+            if job_detail_result['Count'] > 0:
+                resultados.append(job_detail_result)
+
+        except requests.exceptions.RequestException as e:
+            raise Exception(str(e))
+
 
 Guardar los resultados en un archivo CSV:
 
-      if resultados:
-      filename = 'resultados.csv'
-      print(f"Los resultados se han guardado en el archivo {filename}")
+        if resultados:
+        filename = '../resultados.csv'
+
+        with open(filename, 'w', newline='') as csvfile:
+            fieldnames = ['LogTime', 'Detail', 'Method', 'DeviceName', 'LogType']  # Incluye 'LogType' en los fieldnames
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for resultado in resultados:
+                for item in resultado['Items']:
+                    del item['LogType']  # Elimina el campo 'LogType' del diccionario
+                    writer.writerow(item)
+
+        print(f"Los resultados se han guardado en el archivo {filename}")
     else:
-      print("No se encontraron resultados para exportar a un archivo CSV.")
+        print("No se encontraron resultados para exportar a un archivo CSV.")
 
-Pausa de 8 segundos:
+Imprimir en pantalla los resultados:
 
-    time.sleep(8)
-
+    pprint.pp(resultados)
 
 ## <div align="center">Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
 <div align="center">LastBootDuration_superior_a_XX.py</div><br>

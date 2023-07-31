@@ -53,7 +53,7 @@ Pausa de 8 segundos:
 
 
 ## <div align="center">Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
-LastBootDuration_superior_a_XX.py</div><br>
+<div align="center">LastBootDuration_superior_a_XX.py</div><br>
 
 Caso de uso:
 Necesitamos conocer y visualizar en la consola de Python los dispositivos que han tenido un Boot Logon superior a los 100 segundos

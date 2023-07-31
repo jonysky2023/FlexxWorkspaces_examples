@@ -50,3 +50,11 @@ Guardar los resultados en un archivo CSV:
 Pausa de 8 segundos:
 
     time.sleep(8)
+
+## Mostrar en consola los dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+LastBootDuration_superior_a_XX.py</div>
+
+Caso de uso:
+Mostrar en consola los dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+
+Explicación del código:

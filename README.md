@@ -51,10 +51,9 @@ Pausa de 8 segundos:
 
     time.sleep(8)
 
-<div align="center">
-   </a>
-## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos</a>
-LastBootDuration_superior_a_XX.py</div>
+
+## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+<div align="center">LastBootDuration_superior_a_XX.py</div>
 
 Caso de uso:
 Necesitamos conocer y visualizar en la consola de Python los dispositivos que han tenido un Boot Logon superior a los 100 segundos

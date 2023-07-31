@@ -53,7 +53,7 @@ Pausa de 8 segundos:
 
 <div align="center">
    </a>
-## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos
+## Dispositivos que el ultimo Boot logon ha sido superior a 100 segundos</a>
 LastBootDuration_superior_a_XX.py</div>
 
 Caso de uso:

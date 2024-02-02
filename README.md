@@ -19,7 +19,7 @@ Importaciones:
 
 Encabezados de solicitud HTTP:
 
-    api_url = 'https://fws-apim-93768.azure-api.net/api/'  # URL de la FWSAPI
+    api_url = 'https://XXXXXXXXXXXXXX.net/api/'  # URL de la FWSAPI
     token = 'BASIC TOKEN'
 
     headers = {
